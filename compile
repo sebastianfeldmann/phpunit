@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -eof pipefail
+set -x
+
+$PHPSCOPER_BIN add-prefix --force --output-dir=scope --config=build/scoper.inc.php
+cd scope
+composer dump-autoload
+php phpunit

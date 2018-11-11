@@ -9,6 +9,8 @@
  */
 namespace PHPUnit\Framework;
 
+use DataProviderDependencyTest;
+
 class TestSuiteTest extends TestCase
 {
     /**
@@ -162,7 +164,7 @@ class TestSuiteTest extends TestCase
         $lastSkippedResult = \array_pop($skipped);
         $message           = $lastSkippedResult->thrownException()->getMessage();
 
-        $this->assertContains('Test for DataProviderDependencyTest::testDependency skipped by data provider', $message);
+        $this->assertContains('Test for '.DataProviderDependencyTest::class.'::testDependency skipped by data provider', $message);
     }
 
     public function testIncompleteTestDataProvider(): void

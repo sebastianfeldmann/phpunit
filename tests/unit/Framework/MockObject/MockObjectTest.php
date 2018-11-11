@@ -723,7 +723,7 @@ class MockObjectTest extends TestCase
         } catch (ExpectationFailedException $e) {
             $this->assertSame(
                 'Expectation failed for method name is equal to "right" when invoked 1 time(s).' . "\n" .
-                'Parameter 0 for invocation SomeClass::right(Array (...)) does not match expected value.' . "\n" .
+                'Parameter 0 for invocation '.SomeClass::class.'::right(Array (...)) does not match expected value.' . "\n" .
                 'Failed asserting that two arrays are equal.' . "\n" .
                 '--- Expected' . "\n" .
                 '+++ Actual' . "\n" .

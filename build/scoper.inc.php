@@ -18,5 +18,6 @@ return [
         'PharIo\*',
         'PHP_Token*',
         'PHPUnit_Framework_MockObject_MockObject',
+        'MultiDependencyTest',
     ],
 ];
