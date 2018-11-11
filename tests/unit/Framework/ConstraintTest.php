@@ -847,9 +847,11 @@ EOF
         try {
             $constraint->evaluate(\ClassWithNonPublicAttributes::class);
         } catch (ExpectationFailedException $e) {
+            $class = \ClassWithNonPublicAttributes::class;
+
             $this->assertEquals(
                 <<<EOF
-Failed asserting that class "ClassWithNonPublicAttributes" does not have attribute "privateAttribute".
+Failed asserting that class "$class" does not have attribute "privateAttribute".
 
 EOF
                 ,
@@ -871,10 +873,12 @@ EOF
         try {
             $constraint->evaluate(\ClassWithNonPublicAttributes::class, 'custom message');
         } catch (ExpectationFailedException $e) {
+            $class = \ClassWithNonPublicAttributes::class;
+
             $this->assertEquals(
                 <<<EOF
 custom message
-Failed asserting that class "ClassWithNonPublicAttributes" does not have attribute "privateAttribute".
+Failed asserting that class "$class" does not have attribute "privateAttribute".
 
 EOF
                 ,
@@ -901,9 +905,11 @@ EOF
         try {
             $constraint->evaluate(\ClassWithNonPublicAttributes::class);
         } catch (ExpectationFailedException $e) {
+            $class = \ClassWithNonPublicAttributes::class;
+
             $this->assertEquals(
                 <<<EOF
-Failed asserting that class "ClassWithNonPublicAttributes" does not have static attribute "privateStaticAttribute".
+Failed asserting that class "$class" does not have static attribute "privateStaticAttribute".
 
 EOF
                 ,
@@ -925,10 +931,12 @@ EOF
         try {
             $constraint->evaluate(\ClassWithNonPublicAttributes::class, 'custom message');
         } catch (ExpectationFailedException $e) {
+            $class = \ClassWithNonPublicAttributes::class;
+
             $this->assertEquals(
                 <<<EOF
 custom message
-Failed asserting that class "ClassWithNonPublicAttributes" does not have static attribute "privateStaticAttribute".
+Failed asserting that class "$class" does not have static attribute "privateStaticAttribute".
 
 EOF
                 ,
@@ -955,9 +963,11 @@ EOF
         try {
             $constraint->evaluate(new \ClassWithNonPublicAttributes);
         } catch (ExpectationFailedException $e) {
+            $class = \ClassWithNonPublicAttributes::class;
+
             $this->assertEquals(
                 <<<EOF
-Failed asserting that object of class "ClassWithNonPublicAttributes" does not have attribute "privateAttribute".
+Failed asserting that object of class "$class" does not have attribute "privateAttribute".
 
 EOF
                 ,
@@ -979,10 +989,12 @@ EOF
         try {
             $constraint->evaluate(new \ClassWithNonPublicAttributes, 'custom message');
         } catch (ExpectationFailedException $e) {
+            $class = \ClassWithNonPublicAttributes::class;
+
             $this->assertEquals(
                 <<<EOF
 custom message
-Failed asserting that object of class "ClassWithNonPublicAttributes" does not have attribute "privateAttribute".
+Failed asserting that object of class "$class" does not have attribute "privateAttribute".
 
 EOF
                 ,
@@ -1462,9 +1474,11 @@ EOF
         try {
             $constraint->evaluate($exception);
         } catch (ExpectationFailedException $e) {
+            $dummyExceptionClass = \DummyException::class;
+
             $this->assertEquals(
                 <<<EOF
-Failed asserting that exception of type "DummyException" matches expected exception "FoobarException". Message was: "Test" at
+Failed asserting that exception of type "$dummyExceptionClass" matches expected exception "FoobarException". Message was: "Test" at
 $stackTrace.
 
 EOF

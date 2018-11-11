@@ -71,7 +71,7 @@ class MockBuilderTest extends TestCase
                      ->setMockClassName('ACustomClassName')
                      ->getMock();
 
-        $this->assertInstanceOf(ACustomClassName::class, $mock);
+        $this->assertInstanceOf('ACustomClassName', $mock);
     }
 
     public function testConstructorArgumentsCanBeSpecified(): void

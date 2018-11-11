@@ -341,7 +341,7 @@ class MockObjectTest extends TestCase
 
         $mock->expects($this->once())
              ->method('doSomething')
-             ->will($this->returnCallback(['MethodCallback', 'staticCallback']));
+             ->will($this->returnCallback([\MethodCallback::class, 'staticCallback']));
 
         $this->assertEquals('pass', $mock->doSomething('foo', 'bar'));
     }
@@ -709,7 +709,7 @@ class MockObjectTest extends TestCase
         } catch (ExpectationFailedException $e) {
             $this->assertSame(
                 'Expectation failed for method name is equal to "right" when invoked 1 time(s)' . "\n" .
-                'Parameter 0 for invocation SomeClass::right(Array (...)) does not match expected value.' . "\n" .
+                'Parameter 0 for invocation '.SomeClass::class.'::right(Array (...)) does not match expected value.' . "\n" .
                 'Failed asserting that two arrays are equal.',
                 $e->getMessage()
             );
@@ -755,7 +755,7 @@ class MockObjectTest extends TestCase
             $this->fail('Expected exception');
         } catch (ExpectationFailedException $e) {
             $this->assertSame(
-                'SomeClass::right() was not expected to be called.',
+                SomeClass::class.'::right() was not expected to be called.',
                 $e->getMessage()
             );
         }
@@ -778,7 +778,7 @@ class MockObjectTest extends TestCase
             $this->fail('Expected exception');
         } catch (ExpectationFailedException $e) {
             $this->assertSame(
-                'SomeClass::right() was not expected to be called.',
+                SomeClass::class.'::right() was not expected to be called.',
                 $e->getMessage()
             );
         }
@@ -802,7 +802,7 @@ class MockObjectTest extends TestCase
         } catch (ExpectationFailedException $e) {
             $this->assertSame(
                 'Expectation failed for method name is equal to "right" when invoked 1 time(s)' . "\n" .
-                'Parameter count for invocation SomeClass::right() is too low.' . "\n" .
+                'Parameter count for invocation '.SomeClass::class.'::right() is too low.' . "\n" .
                 'To allow 0 or more parameters with any value, omit ->with() or use ->withAnyParameters() instead.',
                 $e->getMessage()
             );
@@ -816,7 +816,7 @@ class MockObjectTest extends TestCase
      */
     public function testMockArgumentsPassedByReference(): void
     {
-        $foo = $this->getMockBuilder('MethodCallbackByReference')
+        $foo = $this->getMockBuilder(\MethodCallbackByReference::class)
                     ->setMethods(['bar'])
                     ->disableOriginalConstructor()
                     ->disableArgumentCloning()
@@ -838,7 +838,7 @@ class MockObjectTest extends TestCase
      */
     public function testMockArgumentsPassedByReference2(): void
     {
-        $foo = $this->getMockBuilder('MethodCallbackByReference')
+        $foo = $this->getMockBuilder(\MethodCallbackByReference::class)
                     ->disableOriginalConstructor()
                     ->disableArgumentCloning()
                     ->getMock();
@@ -863,7 +863,7 @@ class MockObjectTest extends TestCase
      */
     public function testMockArgumentsPassedByReference3(): void
     {
-        $foo = $this->getMockBuilder('MethodCallbackByReference')
+        $foo = $this->getMockBuilder(\MethodCallbackByReference::class)
                     ->setMethods(['bar'])
                     ->disableOriginalConstructor()
                     ->disableArgumentCloning()
@@ -885,7 +885,7 @@ class MockObjectTest extends TestCase
      */
     public function testMockArgumentsPassedByReference4(): void
     {
-        $foo = $this->getMockBuilder('MethodCallbackByReference')
+        $foo = $this->getMockBuilder(\MethodCallbackByReference::class)
                     ->setMethods(['bar'])
                     ->disableOriginalConstructor()
                     ->disableArgumentCloning()
@@ -1018,7 +1018,7 @@ class MockObjectTest extends TestCase
         return [
             ['Traversable'],
             ['\Traversable'],
-            ['TraversableMockTestInterface'],
+            [\TraversableMockTestInterface::class],
             [['Traversable']],
             [['Iterator', 'Traversable']],
             [['\Iterator', '\Traversable']],
@@ -1063,7 +1063,7 @@ class MockObjectTest extends TestCase
 
         $this->expectException(ExpectationFailedException::class);
         $this->expectExceptionMessage(
-            'Return value inference disabled and no expectation set up for SomeClass::doSomethingElse()'
+            'Return value inference disabled and no expectation set up for '.SomeClass::class.'::doSomethingElse()'
         );
 
         $mock->doSomethingElse(1);
@@ -1083,7 +1083,7 @@ class MockObjectTest extends TestCase
             $this->fail('Exception expected');
         } catch (ExpectationFailedException $e) {
             $this->assertSame(
-                'Return value inference disabled and no expectation set up for StringableClass::__toString()',
+                'Return value inference disabled and no expectation set up for '.StringableClass::class.'::__toString()',
                 $e->getMessage()
             );
         }
