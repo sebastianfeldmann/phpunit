@@ -10,6 +10,8 @@ declare(strict_types=1);
  */
 
 return [
+    'prefix' => '_PhpScoper5bf3cbdac76b4',
+
     'whitelist-global-classes' => false,
 
     'whitelist' => [
