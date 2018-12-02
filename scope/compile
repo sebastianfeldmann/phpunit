@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -eof pipefail
+set -x
+
+rm -rf ../tmp || true
+rm -rf scope || true
+cp -r . ../tmp/
+rm -rf ../tmp/tests
+
+$PHPSCOPER_BIN add-prefix ../tmp --force --output-dir=scope --config=build/scoper.inc.php
+
+rm -rf ../tmp
+cp -r tests scope/
+
+cd scope
+composer dump-autoload
+php phpunit

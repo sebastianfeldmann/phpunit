@@ -8,12 +8,18 @@ declare(strict_types=1);
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-$whitelistClasses = [
-    'PHPUnit\*',
-    'SebastianBergmann\CodeCoverage\*',
-    'PharIo\*',
-    'PHP_Token*',
-];
+
 return [
-    'whitelist' => $whitelistClasses,
+    'prefix' => '_PhpScoper5bf3cbdac76b4',
+
+    'whitelist-global-classes' => false,
+
+    'whitelist' => [
+        'PHPUnit\*',
+        'SebastianBergmann\CodeCoverage\*',
+        'PharIo\*',
+        'PHP_Token*',
+        'PHPUnit_Framework_MockObject_MockObject',
+        'MultiDependencyTest',
+    ],
 ];
